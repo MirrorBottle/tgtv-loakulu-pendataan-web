@@ -42,4 +42,10 @@ class VillagerController extends Controller
     $villager = Villager::find($id);
     return new VillagerDetailResource($villager);
   }
+
+  public function family($family_id)
+  {
+    $villagers = Villager::where('family_id', $family_id)->get();
+    return VillagerDetailResource::collection($villagers);
+  }
 }

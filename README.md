@@ -1,3 +1,3 @@
-# PT. Anandita Web Admin
+# Loa Kulu Kota Web Admin
 
-PT. Anandita Company Profile
+Loa Kulu Kota Company Profile

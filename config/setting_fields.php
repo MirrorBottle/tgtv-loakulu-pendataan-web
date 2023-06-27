@@ -13,7 +13,7 @@ return [
                 'label' => 'App Name', // you know what label it is
                 'rules' => 'required|min:2|max:50', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'PT. Anandita - Catering dan Rental', // default value if you want
+                'value' => 'Loa Kulu Kota - Catering dan Rental', // default value if you want
             ],
             [
                 'type'  => 'text', // input fields type
@@ -22,7 +22,7 @@ return [
                 'label' => 'Footer Text', // you know what label it is
                 'rules' => 'required|min:2', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'PT. Anandita', // default value if you want
+                'value' => 'Loa Kulu Kota', // default value if you want
             ],
             [
                 'type'  => 'email', // input fields type
@@ -137,7 +137,7 @@ return [
                 'label' => 'Deskripsi Experience', // you know what label it is
                 'rules' => 'required|nullable|max:191', // validation rule of laravel
                 'class' => '', // any class for input
-                'value' => 'PT. ANANDITA telah berpengalaman di bidang catering selama 10 tahun dan rental selama 9 tahun, dengan pengalaman tersebut PT. ANANDITA telah berkejasama dengan beberapa perusahaan.', // default value if you want
+                'value' => 'Loa Kulu Kota telah berpengalaman di bidang catering selama 10 tahun dan rental selama 9 tahun, dengan pengalaman tersebut Loa Kulu Kota telah berkejasama dengan beberapa perusahaan.', // default value if you want
             ],
         ],
     ],

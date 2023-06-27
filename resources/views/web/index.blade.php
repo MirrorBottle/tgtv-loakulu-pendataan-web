@@ -1,6 +1,7 @@
 <!doctype html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
@@ -10,38 +11,33 @@
     <link rel="shortcut icon" href="{{ asset(setting('favicon')) }}" type="image/x-icon">
     <link rel="icon" href="{{ asset(setting('favicon')) }}" type="image/x-icon">
 
-    <link rel="stylesheet" href="{{asset('web/css/bootstrap.min.css')}}">
-    <link rel="stylesheet" href="{{asset('web/css/unicons.css')}}">
-    <link rel="stylesheet" href="{{asset('web/css/owl.carousel.min.css')}}">
-    <link rel="stylesheet" href="{{asset('web/css/owl.theme.default.min.css')}}">
-    
-    <!-- MAIN STYLE -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/@fancyapps/ui/dist/fancybox.css"
-    />
-    <link rel="stylesheet" href="{{asset('web/css/tooplate-style.css')}}">
-    
-<!--
+    <link rel="stylesheet" href="{{ asset('web/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('web/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('web/css/responsive.css') }}">
+
+    <!--
 
 Tooplate 2115 Marvel
 
 https://www.tooplate.com/view/2115-marvel
 
 -->
-  </head>
-  <body>
-     <h1>Website Loa Kulu Kota</h1>
+</head>
 
-    <script src="{{('web/js/jquery-3.3.1.min.js')}}"></script>
-    <script src="{{('web/js/popper.min.js')}}"></script>
-    <script src="{{('web/js/bootstrap.min.js')}}"></script>
-    <script src="{{('web/js/Headroom.js')}}"></script>
-    <script src="{{('web/js/jQuery.headroom.js')}}"></script>
-    <script src="{{('web/js/owl.carousel.min.js')}}"></script>
-    <script src="{{('web/js/smoothscroll.js')}}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@4.0/dist/fancybox.umd.js"></script>
-    <script src="{{('web/js/custom.js')}}"></script>
+<body>
+  <div class="hero_area">
+    <!-- slider section -->
+    <section class=" slider_section position-relative pt-4">
+      <div class="container d-flex flex-column justify-content-center align-items-center">
+        <img src="{{ asset('web/images/Lambang_Kab._Kutai_Kertanegara.png') }}" alt="" style="width: 10rem">
+        <img src="{{ asset('web/images/Logo-Crop-White-1024x242.png') }}" alt="" class="mt-3" style="width: 27rem">
+      </div>
+    </section>
+    <!-- end slider section -->
+  </div>
 
-  </body>
+    <script src="{{ asset('web/js/jquery-3.4.1.min.js') }}"></script>
+    <script src="{{ asset('web/js/bootstrap.js') }}"></script>
+</body>
+
 </html>

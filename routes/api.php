@@ -36,5 +36,10 @@ Route::namespace('App\Http\Controllers\Api')->group(function () {
       Route::get('/{id}', 'VillagerController@show');
       Route::get('/', 'VillagerController@index');
     });
+
+    Route::group(['prefix' => 'family'], function() {
+      Route::get('/{id}', 'FamilyController@show');
+      Route::get('/', 'FamilyController@index');
+    });
   });
 });

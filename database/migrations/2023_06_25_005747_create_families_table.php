@@ -16,8 +16,8 @@ class CreateFamiliesTable extends Migration
         Schema::create('families', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('neighborhood_id');
-            $table->string('head_family');
             $table->string('number')->unique();
+            $table->string('head_family');
             $table->integer('total_member')->default(1);
             $table->text('address');
 

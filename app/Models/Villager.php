@@ -11,6 +11,7 @@ class Villager extends Model
     use HasFactory;
 
     public $dates = ['birth_date'];
+    public $guarded = [];
 
     public function family() {
         return $this->belongsTo(Family::class);

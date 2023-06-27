@@ -23,7 +23,7 @@ class CreateVillagersTable extends Migration
             $table->date('birth_date');
             $table->string('religion');
             $table->enum('gender', ['L', 'P']);
-            $table->enum('marital_status', ['K', 'BK', 'CH', 'CM']);
+            $table->string('marital_status');
             $table->string('job');
             $table->string('father_name');
             $table->string('mother_name');

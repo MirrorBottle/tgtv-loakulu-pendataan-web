@@ -24,7 +24,8 @@ Route::group([
     'namespace' => 'App\Http\Controllers\Web',
 ], function() {
     Route::get('/', 'WebController@index');
-    Route::post('/inbox', 'WebController@inbox')->name('web.inbox');
+    Route::get('/upload', 'WebController@upload_view')->name('web.upload_view');
+    Route::post('/upload', 'WebController@upload')->name('web.upload');
 });
 // ADMIN
 Route::redirect('admin', 'admin/dashboard');

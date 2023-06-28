@@ -41,5 +41,9 @@ Route::namespace('App\Http\Controllers\Api')->group(function () {
       Route::get('/{id}', 'FamilyController@show');
       Route::get('/', 'FamilyController@index');
     });
+
+    Route::group(['prefix' => 'neighborhood'], function() {
+      Route::get('/info/{id}', 'NeighborhoodController@info');
+    });
   });
 });

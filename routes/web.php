@@ -26,6 +26,8 @@ Route::group([
     Route::get('/', 'WebController@index');
     Route::get('/upload', 'WebController@upload_view')->name('web.upload_view');
     Route::post('/upload', 'WebController@upload')->name('web.upload');
+    Route::get('/report', 'WebController@report_view')->name('web.report_view');
+    Route::post('/report', 'WebController@report')->name('web.report');
 });
 // ADMIN
 Route::redirect('admin', 'admin/dashboard');

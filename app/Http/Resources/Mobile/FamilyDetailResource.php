@@ -19,7 +19,7 @@ class FamilyDetailResource extends JsonResource
       "id" => $this->id,
       "number" => $this->number,
       "total_member" => $this->total_member,
-      "neighborhood_id" => $this->neighborhood_id,
+      "neighborhood_id" => (string) $this->neighborhood_id,
       "address" => $this->address ?? "",
       "head_family" => $this->head_family,
       "neighborhood_name" => $this->neighborhood->name,

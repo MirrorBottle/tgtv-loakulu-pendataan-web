@@ -48,4 +48,26 @@ class VillagerController extends Controller
     $villagers = Villager::where('family_id', $family_id)->get();
     return VillagerDetailResource::collection($villagers);
   }
+
+  public function birth(Request $request) {
+    $villager = Villager::create([
+      "family_id"       => $request->familyId,
+      "neighborhood_id" => $request->neighborhoodId,
+      "id_number"       => $request->idNumber,
+      "name"            => $request->name,
+      "religion"        => $request->religion,
+      "birth_place"     => $request->birthPlace,
+      "birth_date"      => Carbon::createFromFormat("d-m-Y", $request->birthDate),
+      "gender"          => $request->gender,
+      "marital_status"  => "BK",
+      "job"             => "BELUM BEKERJA",
+      "education"       => "BELUM SEKOLAH",
+      "father_name"     => $request->fatherName,
+      "mother_name"     => $request->fatherName,
+      "is_birth"        => 1,
+      "born_at"         => Carbon::now()->toDateTimeString()
+    ]);
+
+    return new VillagerDetailResource($villager);
+  }
 }

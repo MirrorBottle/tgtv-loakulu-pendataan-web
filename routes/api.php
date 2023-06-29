@@ -37,10 +37,8 @@ Route::namespace('App\Http\Controllers\Api')->group(function () {
       Route::get('/', 'VillagerController@index');
     });
 
-    Route::group(['prefix' => 'family'], function() {
-      Route::get('/{id}', 'FamilyController@show');
-      Route::get('/', 'FamilyController@index');
-    });
+    Route::apiResource('family', 'FamilyController');
+    Route::get('family/check/{number}', 'FamilyController@check');
 
     Route::group(['prefix' => 'neighborhood'], function() {
       Route::get('/info/{id}', 'NeighborhoodController@info');

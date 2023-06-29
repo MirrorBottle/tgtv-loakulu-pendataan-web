@@ -89,7 +89,7 @@ class WebController extends Controller
     public function upload(Request $request)
     {
         $file = $request->file('file');
-        $neighborhood_id = 7;
+        $neighborhood_id = 14;
 
         $spreadsheet = IOFactory::load($file);
 
@@ -107,10 +107,10 @@ class WebController extends Controller
                     "name"            => $sheet->getCell("B$row")->getValue(),
                     "neighborhood_id" => $neighborhood_id,
                     "id_number"       => $sheet->getCell("C$row")->getValue(),
-                    "family_id"       => $sheet->getCell("D$row")->getValue(),
+                    "family_id"       => (string) $sheet->getCell("D$row")->getValue(),
                     "birth_place"     => $births[0],
                     "birth_date"      => Carbon::createFromFormat("d-m-Y", str_replace(' ', '', $births[1]))->format("Y-m-d"),
-                    "religion"        => preg_replace('/\s+/','',$sheet->getCell("F$row")->getValue()),
+                    "religion"        => strtoupper(preg_replace('/\s+/','',$sheet->getCell("F$row")->getValue())),
                     "gender"          => strpos($gender, "p") !== false ? "P" : "L",
                     "marital_status"  => $marital_status == "" ? "BK" : $marital_status,
                     "job"             => $sheet->getCell("J$row")->getValue() ?? "-",
@@ -122,7 +122,7 @@ class WebController extends Controller
                     "updated_at"      => Carbon::now()->toDateTimeString(),
                 ]);
             } catch (\Exception $e) {
-                dd($e->getMessage());
+                dd($e->getMessage(), $births);
             }
         }
 

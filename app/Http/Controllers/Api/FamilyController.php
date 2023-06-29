@@ -7,6 +7,7 @@ use App\Models\InventoryStock;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Mobile\FamilyDetailResource;
 use App\Http\Resources\Mobile\FamilyResource;
 use App\Http\Resources\Mobile\VillagerDetailResource;
 use App\Http\Resources\Mobile\VillagerResource;
@@ -36,5 +37,22 @@ class FamilyController extends Controller
       ->orderBy("number", "ASC")
       ->paginate($request->limit ?? 5);
     return FamilyResource::collection($families);
+  }
+
+  public function store(Request $request) {
+    $family = Family::create([
+      "neighborhood_id" => $request->neighborhood_id,
+      "number" => $request->number,
+      "address" => $request->address,
+      "head_family" => $request->head_family,
+      "total_member" => 0,
+    ]);
+
+    return new FamilyDetailResource($family);
+  }
+  public function check($number)
+  {
+    $family = Family::where("number", $number)->first();
+    return $family ? new FamilyDetailResource($family) : ["data" => null];
   }
 }

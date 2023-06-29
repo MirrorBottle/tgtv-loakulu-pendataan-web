@@ -33,6 +33,7 @@ Route::namespace('App\Http\Controllers\Api')->group(function () {
 
     Route::group(['prefix' => 'villager'], function() {
       Route::post('/birth', 'VillagerController@birth');
+      Route::post('/move-in', 'VillagerController@moveIn');
       Route::get('/family/{id}', 'VillagerController@family');
       Route::get('/{id}', 'VillagerController@show');
       Route::get('/', 'VillagerController@index');

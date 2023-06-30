@@ -32,6 +32,8 @@ class VillagerController extends Controller
         $q
           ->whereIn('neighborhood_id', $neighborhood_ids);
       })
+      ->where("is_move_out", 0)
+      ->where("is_death", 0)
       ->orderBy("name", "ASC")
       ->paginate($request->limit ?? 5);
     return VillagerResource::collection($villagers);
@@ -72,6 +74,8 @@ class VillagerController extends Controller
   }
 
   public function moveIn(Request $request) {
+    $villager = Villager::where('id_number', $request->idNumber)->first();
+    
     $villager = Villager::create([
       "family_id"       => $request->familyId,
       "neighborhood_id" => $request->neighborhoodId,
@@ -88,6 +92,27 @@ class VillagerController extends Controller
       "mother_name"     => $request->fatherName,
       "is_move_in"      => 1,
       "move_in_at"      => Carbon::now()->toDateTimeString()
+    ]);
+
+    return new VillagerDetailResource($villager);
+  }
+
+  public function moveOut($id) {
+    $villager = Villager::find($id);
+    $villager->update([
+      'is_move_out' => 1,
+      'move_out_at' => Carbon::now()->toDateTimeString()
+    ]);
+
+    return new VillagerDetailResource($villager);
+  }
+
+  public function death(Request $request) {
+    $villager = Villager::find($request->id);
+    $villager->update([
+      'is_death' => 1,
+      'cause_of_death' => $request->cause_of_death,
+      'death_at' => Carbon::now()->toDateTimeString()
     ]);
 
     return new VillagerDetailResource($villager);

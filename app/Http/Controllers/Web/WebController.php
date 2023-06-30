@@ -316,6 +316,12 @@ class WebController extends Controller
         if(in_array($type, ["population", "men", "women", "children", "birth", "death", "move-in", "move-out"])) {
             $results = Villager::query()
                 ->where("neighborhood_id", $neighborhoodId)
+                ->when($type != "move-out", function($query) {
+                    $query->where("is_move_out", 0);
+                })
+                ->when($type != "death", function($query) {
+                    $query->where("is_death", 0);
+                })
                 ->when($type == "men", function($query) {
                     $query->where("gender", "L");
                 })

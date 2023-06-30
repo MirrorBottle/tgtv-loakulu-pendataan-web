@@ -17,7 +17,7 @@ class CreateVillagersTable extends Migration
             $table->id();
             $table->unsignedBigInteger("family_id");
             $table->unsignedBigInteger("neighborhood_id");
-            $table->string('id_number')->unique();
+            $table->string('id_number');
             $table->string('name');
             $table->string('birth_place');
             $table->date('birth_date');

@@ -20,8 +20,38 @@ class VillagerController extends Controller
   public function index(Request $request)
   {
     $keyword = $request->keyword;
+    $type = $request->type;
     $neighborhood_ids = $request->neighborhood_ids;
     $villagers = Villager::select("*")
+      ->when($type != "move-out", function($query) {
+        $query->where("is_move_out", 0);
+      })
+      ->when($type != "death", function($query) {
+          $query->where("is_death", 0);
+      })
+      ->when($type == "men", function($query) {
+          $query->where("gender", "L");
+      })
+      ->when($type == "women", function($query) {
+          $query->where("gender", "P");
+      })
+      ->when($type == "children", function($query) {
+          $ageLimit = 6;
+          $birthDateLimit = Carbon::now()->subYears($ageLimit)->toDateString();
+          $query->whereDate("birth_date", ">=", $birthDateLimit);
+      })
+      ->when($type == "birth", function($query) {
+          $query->where("is_birth", 1);
+      })
+      ->when($type == "death", function($query) {
+          $query->where("is_death", 1);
+      })
+      ->when($type == "move-in", function($query) {
+          $query->where("is_move_in", 1);
+      })
+      ->when($type == "move-out", function($query) {
+          $query->where("is_move_out", 1);
+      })
       ->when($request->filled('keyword'), function($q) use ($keyword) {
         $q
           ->where('id_number', "$keyword")
@@ -32,8 +62,6 @@ class VillagerController extends Controller
         $q
           ->whereIn('neighborhood_id', $neighborhood_ids);
       })
-      ->where("is_move_out", 0)
-      ->where("is_death", 0)
       ->orderBy("name", "ASC")
       ->paginate($request->limit ?? 5);
     return VillagerResource::collection($villagers);

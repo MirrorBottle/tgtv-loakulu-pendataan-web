@@ -351,6 +351,7 @@ class WebController extends Controller
         }
         $file = $type == "population" ? $this->generateReportByFamily($sheet, $results) : $this->generateReportByPerson($sheet, $results);
         ob_end_clean();
+        header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
         header('Content-Disposition: attachment;filename="' . $file_name . '.xlsx"');
         $writer = new Xlsx($file);
         $writer->save('php://output');

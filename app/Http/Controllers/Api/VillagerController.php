@@ -23,6 +23,11 @@ class VillagerController extends Controller
     $type = $request->type;
     $neighborhood_ids = $request->neighborhood_ids;
     $villagers = Villager::select("*")
+      ->when($request->filled('keyword'), function($q) use ($keyword) {
+        $q
+          ->where('id_number', "$keyword")
+          ->orWhere('name', 'LIKE', "%$keyword%");
+      })
       ->when($type != "move-out", function($query) {
         $query->where("is_move_out", 0);
       })
@@ -51,11 +56,6 @@ class VillagerController extends Controller
       })
       ->when($type == "move-out", function($query) {
           $query->where("is_move_out", 1);
-      })
-      ->when($request->filled('keyword'), function($q) use ($keyword) {
-        $q
-          ->where('id_number', "$keyword")
-          ->orWhere('name', 'LIKE', "%$keyword%");
       })
       ->when($request->filled('neighborhood_ids'), function($q) use ($neighborhood_ids) {
         $neighborhood_ids = explode(",", $neighborhood_ids);

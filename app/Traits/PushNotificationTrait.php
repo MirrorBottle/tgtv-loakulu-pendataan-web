@@ -8,7 +8,7 @@ trait PushNotificationTrait
 {
 
     public $url = "https://fcm.googleapis.com/fcm/send";
-    public $server_key = "AAAAAvsAwdk:APA91bGlVpPijfJwUIYYErjcnrummvkS-eY695WC8WXXPXIipcn8WgEc4Ly36rgx8cbg8WLFZxNl_rDXC2gJ80wPDfKVhDAUYR3zfgNgmDt2kkQzaUWTUtHq-ZMwbszESyC5lweoXc0h";
+    public $server_key = "AAAAoJOgQjM:APA91bEozpOYq1sSMI9d_EsBQP5t20Ozl7jroCXmrHFO5zrAXN2FirYS3y8e8CV6CwdZGNuEA4NF7WjO3h7Bl_ureGn0dvivHoKd3_RS0g-ZFedLnyr60t-di2bkBhMWawULJWNbMoBL";
 
     public function pushNotificationToUser($user_id, $title = 'NRA', $body = '-', $data = ['message' => 'notif'])
     {
@@ -130,7 +130,6 @@ trait PushNotificationTrait
 
         // Execute post
         $result = curl_exec($ch);
-        dd($result);
         if ($result === FALSE) {
             die('Curl failed: ' . curl_error($ch));
         }

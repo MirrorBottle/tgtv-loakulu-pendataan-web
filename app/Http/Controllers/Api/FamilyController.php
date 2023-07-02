@@ -50,6 +50,12 @@ class FamilyController extends Controller
 
     return new FamilyDetailResource($family);
   }
+
+  public function show($id) {
+    $family = Family::find($id);
+    return new FamilyDetailResource($family);
+
+  }
   public function check($number)
   {
     $family = Family::where("number", $number)->first();

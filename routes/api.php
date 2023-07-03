@@ -45,6 +45,7 @@ Route::namespace('App\Http\Controllers\Api')->group(function () {
     Route::get('family/check/{number}', 'FamilyController@check');
 
     Route::group(['prefix' => 'neighborhood'], function() {
+      Route::get('/list/{id}', 'NeighborhoodController@list');
       Route::get('/info/{id}', 'NeighborhoodController@info');
     });
   });

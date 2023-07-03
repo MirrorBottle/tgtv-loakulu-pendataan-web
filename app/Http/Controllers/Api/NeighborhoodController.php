@@ -10,13 +10,21 @@ use App\Http\Controllers\Controller;
 use App\Http\Resources\Mobile\VillagerDetailResource;
 use App\Http\Resources\Mobile\VillagerResource;
 use App\Http\Resources\Mobile\InventoryItemResource;
+use App\Http\Resources\Mobile\NeighborhoodResource;
 use App\Models\Family;
 use App\Models\Villager;
 use App\Models\InventoryItem;
+use App\Models\UserNeighborhood;
 use Illuminate\Http\Response;
 
 class NeighborhoodController extends Controller
 {
+
+
+  public function list($id) {
+    $user_neighborhoods = UserNeighborhood::where("user_id", $id)->get();
+    return NeighborhoodResource::collection($user_neighborhoods);
+  }
 
   public function info($id)
   {

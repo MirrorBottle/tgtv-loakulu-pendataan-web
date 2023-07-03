@@ -29,6 +29,7 @@ Route::namespace('App\Http\Controllers\Api')->group(function () {
       Route::get('/latest', 'AnnouncementController@latest');
       Route::get('/{id}', 'AnnouncementController@show');
       Route::get('/', 'AnnouncementController@index');
+      Route::post('/', 'AnnouncementController@store');
     });
 
     Route::group(['prefix' => 'villager'], function() {

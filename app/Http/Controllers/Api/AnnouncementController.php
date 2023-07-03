@@ -12,10 +12,14 @@ use App\Http\Resources\Mobile\AnnouncementResource;
 use App\Http\Resources\Mobile\InventoryItemResource;
 use App\Models\Announcement;
 use App\Models\InventoryItem;
+use App\Traits\PushNotificationTrait;
 use Illuminate\Http\Response;
+use Illuminate\Support\Str;
 
 class AnnouncementController extends Controller
 {
+
+  use PushNotificationTrait;
 
   public function latest() {
     $announcements = Announcement::orderBy("id", "DESC")->limit(3)->get();
@@ -36,6 +40,17 @@ class AnnouncementController extends Controller
   public function show($id)
   {
     $announcement = Announcement::find($id);
+    return new AnnouncementDetailResource($announcement);
+  }
+
+  public function store(Request $request)
+  {
+    $request->merge([
+      "activity_date" => Carbon::createFromFormat("d-m-Y", $request->activity_date)->toDateString(),
+    ]);
+    $announcement = Announcement::create($request->all());
+
+    $this->pushNotificationToTopic($announcement->title, Str::limit($announcement->content, 40, '...'), 'admins');
     return new AnnouncementDetailResource($announcement);
   }
 }

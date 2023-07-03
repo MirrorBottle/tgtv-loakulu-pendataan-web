@@ -9,5 +9,6 @@ class Announcement extends Model
 {
     use HasFactory;
 
+    public $guarded = [];
     public $dates = ['activity_date'];
 }
